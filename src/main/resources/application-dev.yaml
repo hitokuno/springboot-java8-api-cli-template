@@ -1,0 +1,9 @@
+server:
+  port: ${SERVER_PORT:8443}
+  ssl:
+    key-store: ${SSL_KEY_STORE:file:./keystore/keystore.p12}
+
+logging:
+  level:
+    com.example.app: DEBUG
+    org.mybatis: DEBUG

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>App</title>
+</head>
+<body>
+  <h1>App</h1>
+  <div id="result"></div>
+  <script>
+    fetch('/api/health')
+      .then(r => r.json())
+      .then(d => document.getElementById('result').textContent = JSON.stringify(d));
+  </script>
+</body>
+</html>

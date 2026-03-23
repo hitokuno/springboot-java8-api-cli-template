@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.primarydb.mapper.UserMapper">
+
+  <resultMap id="userResultMap" type="com.example.app.common.domain.User">
+    <id     property="id"    column="USER_ID"/>
+    <result property="name"  column="USER_NAME"/>
+    <result property="email" column="EMAIL"/>
+  </resultMap>
+
+  <select id="findById" parameterType="String" resultMap="userResultMap">
+    SELECT USER_ID, USER_NAME, EMAIL
+    FROM USERS
+    WHERE USER_ID = #{id}
+  </select>
+
+</mapper>

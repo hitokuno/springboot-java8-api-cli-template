@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: springboot8-app:latest
+    container_name: springboot8-app
+    ports:
+      - "${SERVER_PORT:-8443}:${SERVER_PORT:-8443}"
+    environment:
+      SERVER_PORT: ${SERVER_PORT:-8443}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SSL_KEY_STORE_PASSWORD: ${SSL_KEY_STORE_PASSWORD:-changeit}
+      SSL_KEY_ALIAS: ${SSL_KEY_ALIAS:-app}
+    volumes:
+      # Persist auto-generated (or mount your own) keystore here.
+      # To use a real certificate: place keystore.p12 in ./keystore/ before starting.
+      - ./keystore:/app/keystore
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsk", "https://localhost:${SERVER_PORT:-8443}/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s

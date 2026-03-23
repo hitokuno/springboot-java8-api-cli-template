@@ -1,0 +1,3 @@
+DELETE FROM USERS;
+INSERT INTO USERS (USER_ID, USER_NAME, EMAIL) VALUES ('A001', 'Alice',  'alice@example.com');
+INSERT INTO USERS (USER_ID, USER_NAME, EMAIL) VALUES ('A002', 'Bob',    'bob@example.com');

@@ -1,0 +1,7 @@
+.env
+target/
+keystore/
+logs/
+*.log
+*.class
+.DS_Store
